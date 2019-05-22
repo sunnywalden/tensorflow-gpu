@@ -10,7 +10,10 @@ USER root
 #ADD OpenSSL_1_1_1b.tar.gz ./
 #ADD Python-3.7.3.tar.xz ./
 
-RUN apt-get install -y lsb-release && \
+RUN apt-get -y update && \
+    apt-get -y upgrade && \
+    apt-get -y dist-upgrade && \
+    apt-get install -y lsb-release && \
     apt-get install -y wget && \
     wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1b.tar.gz && \
     tar -zxf OpenSSL_1_1_1b.tar.gz && \
