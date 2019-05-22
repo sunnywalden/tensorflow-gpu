@@ -44,6 +44,7 @@ RUN apt-get -y update && \
     ln -s /usr/local/python3/bin/python3.7 /usr/bin/python && \
     ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3 && \
     ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip && \
+    export PATH=/usr/local/python3/bin:$PATH && \
     pip3 install --upgrade pip && \
     cd .. && rm -rf Python-3.7.3*
 
