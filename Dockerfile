@@ -39,7 +39,7 @@ RUN apt-get -y update && \
     ./configure --prefix=/usr/local/python3 --with-openssl=/usr/local/openssl && \
     make && make install && \
     sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/bin/lsb_release && \
-    rm -rf /usr/bin/python3 && rm -rf /usr/bin/python3 && rm -rf /usr/bin/pip3 && rm -rf /usr/bin/pip && \
+    rm -rf /usr/bin/python3 && rm -rf /usr/bin/python && rm -rf /usr/bin/pip3 && rm -rf /usr/bin/pip && \
     ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3 && \
     ln -s /usr/local/python3/bin/python3.7 /usr/bin/python && \
     ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3 && \
