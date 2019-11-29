@@ -1,15 +1,10 @@
-FROM tensorflow/tensorflow:1.12.0-gpu-py3
-#FROM tensorflow/tensorflow:1.13.1-gpu-py3-jupyter
+FROM tensorflow/tensorflow:1.13.1-gpu-py3-jupyter
 
 MAINTAINER sunnywalden@gmail.com
 
 USER root
 
-#RUN apt-get -y update && \
-#    apt-get -y upgrade && \
-#    apt-get -y dist-upgrade && \
-#ADD OpenSSL_1_1_1b.tar.gz ./
-#ADD Python-3.7.3.tar.xz ./
+ENV PYTHON_VERSION 3.7.5
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
@@ -33,9 +28,9 @@ RUN apt-get -y update && \
     ldconfig -v && \
     cd .. && rm -rf *OpenSSL_1_1_1b* && \
     apt-get install -y build-essential python-dev python-setuptools python-pip python-smbus libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev libsqlite3-dev tk-dev libffi-dev && \
-    wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz && \
-    tar -Jxf Python-3.7.3.tar.xz && \
-    cd Python-3.7.3 && \
+    wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tar.xz && \
+    tar -Jxf Python-$PYTHON_VERSION.tar.xz && \
+    cd Python-$PYTHON_VERSION && \
     ./configure --prefix=/usr/local/python3 --with-openssl=/usr/local/openssl && \
     make && make install && \
     sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/bin/lsb_release && \
@@ -46,5 +41,6 @@ RUN apt-get -y update && \
     ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip && \
     export PATH=/usr/local/python3/bin:$PATH && \
     pip3 install --upgrade pip && \
-    cd .. && rm -rf Python-3.7.3*
+    cd .. && rm -rf Python-$PYTHON_VERSION* && \
+    apt-get install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils
 
