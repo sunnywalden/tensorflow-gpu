@@ -1,10 +1,7 @@
-FROM tensorflow/tensorflow:1.13.1-gpu-py3-jupyter
-
-MAINTAINER sunnywalden@gmail.com
-
+FROM tensorflow/tensorflow:2.6.2-gpu-py3-jupyter
 USER root
 
-ENV PYTHON_VERSION 3.7.5
+ENV PYTHON_VERSION 3.8.2
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
@@ -35,10 +32,10 @@ RUN apt-get -y update && \
     make && make install && \
     sed -i 's/\/usr\/bin\/python/\/usr\/bin\/python2.7/g' /usr/bin/lsb_release && \
     rm -rf /usr/bin/python3 && rm -rf /usr/bin/python && rm -rf /usr/bin/pip3 && rm -rf /usr/bin/pip && \
-    ln -s /usr/local/python3/bin/python3.7 /usr/bin/python3 && \
-    ln -s /usr/local/python3/bin/python3.7 /usr/bin/python && \
-    ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip3 && \
-    ln -s /usr/local/python3/bin/pip3.7 /usr/bin/pip && \
+    ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3 && \
+    ln -s /usr/local/python3/bin/python3.8 /usr/bin/python && \
+    ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3 && \
+    ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip && \
     export PATH=/usr/local/python3/bin:$PATH && \
     pip3 install --upgrade pip && \
     cd .. && rm -rf Python-$PYTHON_VERSION* && \
